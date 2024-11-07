@@ -1,0 +1,10 @@
+{
+    "exec": "npm run start:dev",
+    "watch": ["src"],             
+    "ext": "ts,json",           
+    "ignore": ["node_modules"],   
+    "execMap": {
+      "ts": "ts-node -r tsconfig-paths/register"  
+    }
+}
+  

@@ -3,6 +3,8 @@ import { CvpdfService } from 'src/cv/cvpdf.service';
 import axios from 'axios'
 import * as dotenv from 'dotenv'
 
+dotenv.config()
+
 @Injectable()
 export class OpenaiService {
     constructor(private readonly AppCvService: CvpdfService) {}

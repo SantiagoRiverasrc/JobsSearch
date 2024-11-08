@@ -12,7 +12,7 @@ export class SearchjobService {
         'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com',
     };
 
-    async getJob(job: string): Promise<any> {
+    public async getJob(job: string): Promise<any> {
         try {
             const jobIds = await this.fetchJobIds(job);
             if (jobIds.length === 0) {

@@ -19,8 +19,15 @@ export class SearchjobService {
                 throw new HttpException('No se encontraron trabajos', HttpStatus.NOT_FOUND);
             }
 
-            const jobDetail = await this.getDetail(jobIds[0]);
-            return jobDetail;
+            let jobs = jobIds.slice(0,4)
+            let jobsDetails = []
+
+            for(let i = 0; i < jobs.length; i++){
+                let jobDetail = await this.getDetail(jobIds[i]);
+                jobsDetails.push(jobDetail)
+            }
+
+            return jobsDetails;
         } catch (error) {
             throw new HttpException(
                 `Error al buscar un trabajo: ${error.message}`,
@@ -46,7 +53,7 @@ export class SearchjobService {
         return response.data.data.map((job) => job.id);
     }
 
-    async getDetail(id: string): Promise<any> {
+    private async getDetail(id: string): Promise<any> {
         const options: AxiosRequestConfig = {
             method: 'GET',
             url: `${this.API_HOST}/get-job-details`,
@@ -56,7 +63,11 @@ export class SearchjobService {
 
         try {
             const response = await axios.request(options);
-            return response.data.data.description;
+            return {
+                description: response.data.data.description,
+                habilidades: response.data.data.skills,
+                link: response.data.data.url
+            };
         } catch (error) {
             throw new HttpException(
                 `Error al buscar detalles del trabajo con id ${id}: ${error.message}`,

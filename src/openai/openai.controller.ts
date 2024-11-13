@@ -6,6 +6,6 @@ export class OpenaiController {
 
     @Get('/getSkill')
     async getSkills(): Promise<any> {
-        return this.AppOpenaiService.getSkills()
+        return this.AppOpenaiService.getRecomendationsJobs()
     }
 }

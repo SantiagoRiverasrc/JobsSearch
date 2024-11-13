@@ -6,10 +6,10 @@ dotenv.config()
 
 @Injectable()
 export class SearchjobService {
-    private readonly API_HOST = 'https://linkedin-data-api.p.rapidapi.com';
+    private readonly API_HOST = 'https://linkedin-api8.p.rapidapi.com';
     private readonly HEADERS = {
         'x-rapidapi-key': process.env.RAPIDAPI_KEY,
-        'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com',
+        'x-rapidapi-host': 'linkedin-api8.p.rapidapi.com',
     };
 
     public async getJob(job: string): Promise<any> {
